@@ -19,14 +19,18 @@
         h1 {
             color: #333;
             margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
         }
 
         select {
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
             margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         button {
@@ -49,10 +53,18 @@
     <h1>Select a Station:</h1>
     <form action="{% url 'available_trains' %}" method="post">
         {% csrf_token %}
-        <select name="station_id">
+        <label for="from_station">From Station:</label>
+        <select name="from_station" name="from_station_id">
             {% for station in stations %}
                 <option value="{{ station.id }}">{{ station.name }}</option>
             {% endfor %}
+        </select>
+
+        <label for="to_station">To Station:</label>
+        <select id="to_station" name="to_station_id">
+                {% for station in stations %}
+                    <option value="{{ station.id}}">{{ station.name }}</option>
+                {% endfor %}
         </select>
         <button type="submit">Submit</button>
     </form>

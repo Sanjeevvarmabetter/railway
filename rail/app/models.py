@@ -1,5 +1,6 @@
 from django.db import models
-from . import User
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Train(models.Model):
