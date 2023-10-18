@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            background-color: #f0f0f0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,7 +19,7 @@
         h1 {
             color: #333;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 28px;
             text-align: center;
         }
 
@@ -31,6 +31,13 @@
             margin-bottom: 20px;
             width: 100%;
             box-sizing: border-box;
+            color: #333;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
         }
 
         button {
@@ -50,11 +57,11 @@
     </style>
 </head>
 <body>
-    <h1>Select a Station:</h1>
+    <h1>Select Stations:</h1>
     <form action="{% url 'available_trains' %}" method="post">
         {% csrf_token %}
         <label for="from_station">From Station:</label>
-        <select name="from_station" name="from_station_id">
+        <select name="from_station_id">
             {% for station in stations %}
                 <option value="{{ station.id }}">{{ station.name }}</option>
             {% endfor %}
@@ -62,10 +69,11 @@
 
         <label for="to_station">To Station:</label>
         <select id="to_station" name="to_station_id">
-                {% for station in stations %}
-                    <option value="{{ station.id}}">{{ station.name }}</option>
-                {% endfor %}
+            {% for station in stations %}
+                <option value="{{ station.id }}">{{ station.name }}</option>
+            {% endfor %}
         </select>
+
         <button type="submit">Submit</button>
     </form>
 </body>
