@@ -18,6 +18,11 @@ def available_trains(request):
     available_trains = Train.objects.filter(station_id = station_id)
     return render(request, 'available_trains.html', {'available_trains': available_trains})
 
+
+def  book_train(request, train_id):
+    selected_train = Train.objects.get(id=train_id)
+    return render(request,'booking_form.html', {'selected_train': selected_train})
+
 def get_train_live_status(request, train_number):
     api_key = 'enter api key'
 
@@ -30,3 +35,4 @@ def get_train_live_status(request, train_number):
     
     else:
         return JsonResponse({'error': 'Failed to fetch live status'}, status=500)
+    

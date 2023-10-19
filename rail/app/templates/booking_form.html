@@ -1,0 +1,22 @@
+<!-- booking_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Train</title>
+</head>
+<body>
+    <h1>Book Train</h1>
+    <p>Train Name: {{ selected_train.name }}</p>
+    <p>Source: {{ selected_train.source }}</p>
+    <p>Destination: {{ selected_train.destination }}</p>
+
+    <form method="post" action="{% url 'confirm_booking' %}">
+        {% csrf_token %}
+        <!-- Add input fields for passenger details, seats, etc. -->
+        <!-- Example: <input type="text" name="passenger_name" placeholder="Passenger Name"> -->
+        <button type="submit">Confirm Booking</button>
+    </form>
+</body>
+</html>
